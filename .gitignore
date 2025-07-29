@@ -1,0 +1,11 @@
+.env
+path/
+upload/
+node_modules/
+dist/
+.vercel/
+doc/
+audios/
+videos/
+images/
+myblog.sql

@@ -1,0 +1,43 @@
+services:
+  myblog-app:
+    image: ccr.ccs.tencentyun.com/ab191592/myblog:0.02
+    ports:
+      - 80:80
+    depends_on:
+      - nest-app
+    networks:
+      - common-network
+  nest-app:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    depends_on:
+      - mysql-container
+    # ports:
+    #   - 31010:31010
+    networks:
+      - common-network
+    env_file:
+      - .env
+  mysql-container:
+    image: mysql
+    volumes:
+        - /Users/like/mysql-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 10s
+      retries: 10
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+    networks:
+      - common-network
+
+networks:
+    common-network:
+      driver: bridge
+
+
