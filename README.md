@@ -39,8 +39,7 @@ serve/
 ### 1. 克隆项目
 
 ```bash
-git clone https://github.com/your-username/nestjs-blog-api.git
-cd nestjs-blog-api
+git clone https://github.com/1915924101/myBlog-nest-serve.git
 ```
 
 ### 2. 安装依赖
